@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Resilio supply network illustration</title>
+  <desc id="desc">A warehouse and product hubs connected by an orange supply route across a technical grid.</desc>
+  <defs>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" stroke="#ddd8ce" stroke-opacity=".18" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#252827"/>
+      <stop offset="1" stop-color="#141615"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#fade)" d="M0 0h1000v700H0z"/>
+  <path fill="url(#grid)" d="M0 0h1000v700H0z"/>
+  <g stroke="#e8e2d7" stroke-opacity=".52" stroke-width="2">
+    <path d="M64 558 278 438l218 126-216 124z"/>
+    <path d="m278 438 1 130m216-4V432L278 307 64 432v126m0-126 215 126 217-126M278 307v131"/>
+    <path d="M278 354 64 479m431-47L278 558"/>
+    <path d="M106 408v-65l46-27 48 28v67m-46-94v66m0-66 46 27m-46 39 46-26"/>
+    <path d="M354 372v-60l43-25 46 27v59m-45-85v59m0-59 45 26m-45 33 45-26"/>
+    <path d="M106 486v-42l45-25 47 27v43m-46-70v43m0-43 46 27m-46 16 46-27"/>
+    <path d="M350 522v-51l46-27 47 28v52m-47-80v52m0-52 47 28m-47 24 47-28"/>
+    <path d="m214 597 64-36 64 37-64 37z"/>
+    <path d="m214 597 1 66 63 37v-65m64-37v66l-64 36m0-65 64-37m-64 37-64-37"/>
+  </g>
+  <g stroke="#ff4e2d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M145 238h194l117 66h199l115 73h89" stroke-dasharray="11 12"/>
+    <path d="m838 377 25 0-13-22m13 22-16 21"/>
+  </g>
+  <g fill="#ff4e2d">
+    <circle cx="145" cy="238" r="9"/><circle cx="339" cy="238" r="9"/><circle cx="456" cy="304" r="9"/>
+    <circle cx="655" cy="304" r="9"/><circle cx="770" cy="377" r="9"/><circle cx="862" cy="377" r="9"/>
+  </g>
+  <g stroke="#ff4e2d" stroke-width="1.5" stroke-opacity=".82">
+    <path d="M145 238 71 169H34m305 69 58-76h58m-2 109 52-53h58m92 86 80-91h58m35 164 83 70h72"/>
+    <rect x="27" y="155" width="89" height="25"/><rect x="422" y="179" width="102" height="25"/>
+    <rect x="582" y="274" width="98" height="25"/><rect x="803" y="529" width="109" height="25"/>
+  </g>
+  <g fill="#ffb09e" font-family="Arial,sans-serif" font-size="12" letter-spacing="2">
+    <text x="37" y="172">SOURCE</text><text x="432" y="196">HUB 03</text><text x="592" y="291">FLOW</text><text x="813" y="546">DELIVERY</text>
+  </g>
+  <g stroke="#e8e2d7" stroke-opacity=".6" stroke-width="1">
+    <path d="M38 625h124m-124 7h72m710-507h90m-90 8h49"/>
+    <path d="M28 36h70m-70 8h39m824 604h84m-84 8h44"/>
+  </g>
+  <g fill="#e8e2d7" fill-opacity=".75" font-family="Arial,sans-serif" font-size="10" letter-spacing="2">
+    <text x="34" y="613">SUPPLY NETWORK / SCHEMATIC</text><text x="807" y="117">SIGNALS / ROUTES / STOCK</text><text x="811" y="656">RESILIO / FIELD NOTES 01</text>
+  </g>
+</svg>

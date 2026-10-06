@@ -1,0 +1,21 @@
+# Python environments and cache files
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Raw dataset files
+Data/raw/*
+!Data/raw/README.md
+
+# Generated simulation results
+outputs/resilience_scenarios.json
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini

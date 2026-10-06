@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#191b19">
+  <meta name="description" content="Resilio explores demand, inventory exposure, and user-selected supply disruption scenarios using a synthetic demonstration dataset.">
+  <title>Resilio — Supply, in perspective</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/api.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#overview" aria-label="Resilio home"><span class="brand-mark">R</span><span>RESILIO<span class="brand-dot">.</span></span></a>
+    <nav class="main-nav" aria-label="Main sections">
+      <a href="#overview" class="nav-link is-active">Overview</a>
+      <a href="#data" class="nav-link">Data</a>
+      <a href="#forecast" class="nav-link">Forecast</a>
+      <a href="#simulation" class="nav-link">Simulation</a>
+      <a href="#method" class="nav-link">Method</a>
+    </nav>
+    <a class="header-cta" href="#simulation">Explore a scenario <span aria-hidden="true">↗</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation"><span></span><span></span></button>
+  </header>
+
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile sections" hidden>
+    <a href="#overview">Overview</a><a href="#data">Data</a><a href="#forecast">Forecast</a><a href="#simulation">Simulation</a><a href="#method">Method</a>
+  </nav>
+
+  <main id="main">
+    <section id="overview" class="hero section-anchor">
+      <div class="hero-topline"><span>SUPPLY RESILIENCE / FIELD STUDY 01</span><span class="live-state"><i></i><span id="api-status">CONNECTING TO LOCAL MODEL</span></span></div>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow orange">SEE THE SIGNAL. TEST THE WHAT-IF.</p>
+          <h1>READY<br>FOR WHAT<br><em>SHIFTS.</em></h1>
+          <div class="hero-bottomline">
+            <p class="hero-description">A visual planner for demand, inventory exposure, and the supply disruptions you choose to explore.</p>
+            <a class="round-link" href="#data" aria-label="Explore the data"><span>↓</span></a>
+          </div>
+          <p class="data-ribbon"><span class="ribbon-dot"></span>SYNTHETIC DEMONSTRATION DATA <span>·</span> NOT A LIVE ALERT SYSTEM</p>
+        </div>
+        <figure class="hero-art">
+          <img src="assets/supply-network.svg" alt="Illustrated supply network linking a source, hubs, and a delivery route">
+          <figcaption><span>FIG. 01</span><span>FLOW / STOCK / RESPONSE</span></figcaption>
+        </figure>
+      </div>
+      <div class="hero-stats" aria-label="Dataset summary">
+        <div><span class="stat-label">OBSERVATIONS</span><strong id="stat-rows">—</strong><small>daily item-location records</small></div>
+        <div><span class="stat-label">ITEMS</span><strong id="stat-skus">—</strong><small>tracked SKU identifiers</small></div>
+        <div><span class="stat-label">LOCATIONS</span><strong id="stat-warehouses">—</strong><small>warehouse identifiers</small></div>
+        <div class="stat-date"><span class="stat-label">DATA WINDOW</span><strong id="stat-dates">Loading</strong><small id="stat-suppliers">— suppliers listed</small></div>
+      </div>
+      <div class="ticker" aria-hidden="true"><span>DEMAND</span><b>✳</b><span>VISIBILITY</span><b>✳</b><span>SCENARIOS</span><b>✳</b><span>RESPONSE</span><b>✳</b><span>DEMAND</span><b>✳</b><span>VISIBILITY</span><b>✳</b></div>
+    </section>
+
+    <section class="intro-band reveal">
+      <p class="eyebrow">THE RESILIO IDEA</p>
+      <h2>Understand the baseline.<br><span>Stress-test the change.</span></h2>
+      <p>Forecasts estimate ordinary demand. The simulator explores “what if” events. Each view makes clear what comes from the dataset and what you chose as an assumption.</p>
+      <div class="intro-index">01—04<br><small>DATA / MODEL / SCENARIO / RESPONSE</small></div>
+    </section>
+
+    <section id="data" class="content-section section-anchor data-section">
+      <div class="section-heading reveal">
+        <div><p class="eyebrow orange">01 / READ THE DATA</p><h2>THE NETWORK,<br><span>AS RECORDED.</span></h2></div>
+        <p class="section-deck">Start with the signals inside the demo dataset. These charts describe recorded values; they do not establish how a real supply chain behaves.</p>
+      </div>
+
+      <div class="data-layout">
+        <article class="chart-panel chart-wide reveal">
+          <div class="panel-head"><div><span class="panel-index">A / DEMAND PULSE</span><h3>Recorded sales through the year</h3></div><span class="chart-unit">UNITS SOLD / MONTH</span></div>
+          <div id="monthly-chart" class="chart-slot" role="img" aria-label="Monthly recorded sales chart"><div class="chart-loading">Waiting for the local data service…</div></div>
+          <div class="panel-foot"><span>365-day dataset window</span><span class="legend-item"><i class="legend-orange"></i>Recorded sales</span></div>
+        </article>
+        <article class="chart-panel reveal">
+          <div class="panel-head"><div><span class="panel-index">B / WHERE IT MOVES</span><h3>Recorded sales by warehouse</h3></div><span class="chart-unit">TOTAL UNITS</span></div>
+          <div id="warehouse-chart" class="bar-list" role="img" aria-label="Recorded sales by warehouse"></div>
+          <div class="panel-foot"><span>Source: candidate CSV</span><span class="tiny-arrow">↗</span></div>
+        </article>
+        <article class="chart-panel reveal">
+          <div class="panel-head"><div><span class="panel-index">C / ITEM MIX</span><h3>Highest recorded sales</h3></div><span class="chart-unit">TOP 8 SKU IDS</span></div>
+          <div id="sku-chart" class="bar-list compact-bars" role="img" aria-label="Top eight SKU identifiers by recorded sales"></div>
+          <div class="panel-foot"><span>IDs have no product descriptions</span><span class="tiny-arrow">↗</span></div>
+        </article>
+        <article class="chart-panel chart-wide reveal">
+          <div class="panel-head pair-head"><div><span class="panel-index">D / ITEM TRACE</span><h3>Daily recorded sales</h3></div><div class="pair-controls"><label>SKU <select id="data-sku" class="sku-select" aria-label="Choose a SKU"></select></label><label>WAREHOUSE <select id="data-warehouse" class="warehouse-select" aria-label="Choose a warehouse"></select></label></div></div>
+          <div id="history-chart" class="chart-slot chart-short" role="img" aria-label="Daily recorded sales for selected item and warehouse"><div class="chart-loading">Choose a data series after connecting the local API.</div></div>
+          <div class="panel-foot"><span id="history-range">Showing recent recorded sales</span><span class="legend-item"><i class="legend-cream"></i>Units sold</span></div>
+        </article>
+        <aside class="data-caution reveal"><span class="caution-icon">!</span><div><strong>Read the fine print in the data.</strong><p>The file is synthetic. Recorded inventory replenishes immediately despite listed lead times, and its stockout flag is always zero. The project shows sales and lead-time fields for exploration; the simulator uses your own starting stock and order quantity.</p></div><a href="#method" aria-label="Read data limitations">↗</a></aside>
+      </div>
+    </section>
+
+    <section id="forecast" class="content-section section-anchor forecast-section">
+      <div class="section-heading reveal">
+        <div><p class="eyebrow orange">02 / LOOK AHEAD</p><h2>DEMAND,<br><span>PROJECTED.</span></h2></div>
+        <p class="section-deck">A recursive Ridge model uses past recorded sales to project the next two weeks. It does not account for promotions or predict disruptions.</p>
+      </div>
+      <div class="forecast-strip reveal"><div class="forecast-context"><span class="panel-index">SELECTED SERIES</span><strong id="forecast-selection">Choose an item in the data section</strong><small id="forecast-meta">Forecast will load when the API is connected.</small></div><div class="forecast-callout"><span class="callout-number">14</span><span><b>DAYS AHEAD</b><small>Recursive projection</small></span></div><div class="forecast-callout"><span class="callout-number orange-number">R</span><span><b>RIDGE MODEL</b><small>Global across item/location pairs</small></span></div></div>
+      <article class="chart-panel forecast-chart-panel reveal">
+        <div class="panel-head"><div><span class="panel-index">E / HISTORY → FORECAST</span><h3>Past sales and projected demand</h3></div><div class="legend-row"><span class="legend-item"><i class="legend-cream"></i>Recorded sales</span><span class="legend-item"><i class="legend-orange"></i>Forecast</span></div></div>
+        <div id="forecast-chart" class="chart-slot forecast-chart" role="img" aria-label="Recorded sales and future demand forecast"><div class="chart-loading">Forecast chart appears here when the local API is ready.</div></div>
+        <div class="panel-foot"><span>Forecast target: recorded sales as a demand proxy</span><span id="forecast-through">—</span></div>
+      </article>
+      <div class="evaluation-row reveal"><div class="evaluation-title"><span class="panel-index">MODEL CHECK / CHRONOLOGICAL HOLDOUT</span><h3>Compared with a simple<br>seven-day average.</h3><p>Lower MAE means smaller average error in this synthetic test period.</p></div><div class="evaluation-metric"><span>TOMORROW / MAE</span><strong>4.13 <small>Ridge</small></strong><div class="metric-compare">vs <b>4.50</b> baseline</div><div class="metric-line"><i style="width:83%"></i></div></div><div class="evaluation-metric"><span>14-DAY TOTAL / MAE</span><strong>16.27 <small>Ridge</small></strong><div class="metric-compare">vs <b>32.73</b> baseline</div><div class="metric-line"><i style="width:50%"></i></div></div><div class="evaluation-note"><span class="asterisk">*</span><p>Evaluation values come from the audited synthetic demo data. They are not evidence of real-world accuracy.</p></div></div>
+    </section>
+
+    <section id="simulation" class="content-section section-anchor simulation-section">
+      <div class="section-heading reveal">
+        <div><p class="eyebrow orange">03 / TEST A WHAT-IF</p><h2>CHANGE THE<br><span>CONDITIONS.</span></h2></div>
+        <p class="section-deck">Choose a disruption, then compare its effect with a possible preparation. Resilio calculates scenarios; it does not predict that an event will happen.</p>
+      </div>
+      <div class="sim-layout">
+        <form id="simulation-form" class="sim-controls reveal">
+          <div class="sim-form-head"><span class="panel-index">SCENARIO BUILDER / 01</span><span class="assumption-tag">YOUR ASSUMPTIONS</span></div>
+          <label class="field-label">ITEM & LOCATION</label>
+          <div class="pair-controls sim-pair"><label><span>SKU</span><select id="sim-sku" class="sku-select" aria-label="Simulation SKU"></select></label><label><span>WAREHOUSE</span><select id="sim-warehouse" class="warehouse-select" aria-label="Simulation warehouse"></select></label></div>
+          <div class="form-divider"></div>
+          <label class="field-label">STARTING POSITION</label>
+          <div class="input-grid"><label class="input-field"><span>Starting stock <small>units / required</small></span><input name="opening_stock" type="number" min="0" step="any" required placeholder="Enter stock"></label><label class="input-field"><span>Planned order <small>units / required</small></span><input name="order_units" type="number" min="0" step="any" required placeholder="Enter order size"></label></div>
+          <p class="field-hint">These values are not taken from the unreliable historical inventory fields.</p>
+          <div class="form-divider"></div>
+          <label class="field-label">DISRUPTION / EDITABLE WHAT-IF</label>
+          <label class="range-field"><span>Demand change <b id="demand-display">1.00×</b></span><input name="demand_multiplier" type="range" min="0.5" max="2" step="0.05" value="1"><small>0.5× to 2× the model forecast</small></label>
+          <div class="input-grid"><label class="input-field"><span>Extra delivery delay <small>days</small></span><input name="delay_days" type="number" min="0" max="46" step="1" value="0"></label><label class="input-field"><span>Shipment lost <small>share</small></span><input name="shipment_loss_fraction" type="number" min="0" max="1" step="0.05" value="0"></label></div>
+          <div class="form-divider"></div>
+          <label class="field-label">POSSIBLE RESPONSE</label>
+          <div class="input-grid"><label class="input-field"><span>Extra prepared stock <small>units</small></span><input name="extra_stock_units" type="number" min="0" step="any" value="0"></label><label class="input-field"><span>Expedite delivery <small>days sooner</small></span><input name="expedite_days" type="number" min="0" step="1" value="0"></label></div>
+          <p class="field-hint">No holding or shortage costs are available, so results compare stock and unmet demand only.</p>
+          <button class="submit-scenario" type="submit"><span>RUN SCENARIO</span><b>↗</b></button>
+          <p id="sim-message" class="form-message" role="status">Connect the local model to run a scenario.</p>
+        </form>
+        <div class="sim-results reveal">
+          <div class="result-heading"><div><span class="panel-index">SCENARIO OUTPUT / 02</span><h3>Three paths.<br><span>One clear comparison.</span></h3></div><span class="result-state" id="scenario-state">AWAITING INPUT</span></div>
+          <div class="scenario-chart-card"><div class="panel-head"><div><span class="chart-unit">PROJECTED ENDING STOCK / UNITS</span></div><span class="scenario-horizon" id="scenario-horizon">— DAYS</span></div><div id="simulation-chart" class="chart-slot sim-chart" role="img" aria-label="Projected stock under normal, disrupted, and response scenarios"><div class="chart-loading">Run a scenario to draw the comparison.</div></div><div class="legend-row scenario-legend"><span class="legend-item"><i class="legend-grey"></i>Normal</span><span class="legend-item"><i class="legend-orange"></i>Disruption</span><span class="legend-item"><i class="legend-green"></i>With response</span></div></div>
+          <div id="scenario-metrics" class="scenario-metrics"><div class="metric-empty"><span>01</span><p>Shortage days</p><strong>—</strong></div><div class="metric-empty"><span>02</span><p>Unmet demand</p><strong>—</strong></div><div class="metric-empty"><span>03</span><p>Ending stock</p><strong>—</strong></div></div>
+          <p class="result-footnote">Scenario settings are chosen by you. The lines are model outputs under those assumptions, not alerts or real-world predictions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="method" class="method-section section-anchor">
+      <div class="method-art reveal"><img src="assets/model-process.svg" alt="Diagram connecting recorded data, a demand forecast, a selected scenario, and a comparison"></div>
+      <div class="method-copy reveal"><p class="eyebrow orange">04 / KNOW WHAT YOU’RE SEEING</p><h2>MAKE THE<br><span>ASSUMPTIONS</span><br>VISIBLE.</h2><p>Resilio uses a synthetic Kaggle dataset to demonstrate analytics and demand forecasting. The historical inventory balance ignores listed lead times, so the simulator starts from values you enter and applies its own visible rules.</p><div class="method-list"><div><b>01</b><span><strong>Recorded values</strong><small>Sales, IDs, and listed lead times come from the CSV.</small></span></div><div><b>02</b><span><strong>Forecast values</strong><small>Ridge predicts recorded sales as a demand proxy.</small></span></div><div><b>03</b><span><strong>Scenario values</strong><small>Starting stock, order size, disruptions, and responses are your assumptions.</small></span></div></div><a class="text-link" href="#overview">BACK TO THE BEGINNING <span>↑</span></a></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a class="brand footer-brand" href="#overview"><span class="brand-mark">R</span><span>RESILIO<span class="brand-dot">.</span></span></a><span>SUPPLY / SIGNAL / RESPONSE</span><span>DEMO DATA · SCENARIOS ARE NOT PREDICTIONS</span><span>© RESILIO / 2026</span></footer>
+</body>
+</html>

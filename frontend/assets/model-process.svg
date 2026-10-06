@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">How Resilio turns data into a scenario comparison</title>
+  <desc id="desc">Four connected stages show recorded sales, a demand forecast, user-selected conditions, and projected inventory paths.</desc>
+  <defs>
+    <pattern id="process-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" stroke="#d9d3c8" stroke-opacity=".14"/>
+    </pattern>
+  </defs>
+  <path fill="#1d201e" d="M0 0h960v600H0z"/>
+  <path fill="url(#process-grid)" d="M0 0h960v600H0z"/>
+  <g stroke="#a9aaa2" stroke-width="2" stroke-opacity=".55">
+    <rect x="53" y="95" width="178" height="122"/>
+    <rect x="277" y="95" width="178" height="122"/>
+    <rect x="501" y="95" width="178" height="122"/>
+    <rect x="725" y="95" width="178" height="122"/>
+    <path d="M231 156h46m178 0h46m178 0h46"/>
+    <path d="m266 147 11 9-11 9m168-18 11 9-11 9m168-18 11 9-11 9"/>
+  </g>
+  <g fill="#ff4e2d">
+    <path d="m80 183 35-23 35 23v18H80z"/>
+    <circle cx="357" cy="155" r="32"/>
+    <path d="M543 183h94v14h-94z"/><path d="M555 172h70v11h-70z"/>
+    <path d="M751 182c23-3 27-23 44-23 18 0 22 21 40 8 12-8 19-16 36-15v41H751z" opacity=".9"/>
+  </g>
+  <g stroke="#e8e3d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M80 179v-25l35-22 35 22v29m-70-29 35 22 35-22m-35 22v28"/>
+    <path d="M322 154h70m-35-35v70m-25-25 50-30m-50 0 50 30" opacity=".7"/>
+    <path d="M538 149h105m-105 21h105m-105 21h55" opacity=".85"/>
+    <path d="M748 196c18-22 34-7 46-25 14-20 31 5 48-16 13-16 21-11 31-8"/>
+    <path d="M748 186c15-7 29-4 39-12 15-12 19 0 33-8 18-10 28 4 53-13" opacity=".45"/>
+  </g>
+  <g fill="#e8e3d9" font-family="Arial,sans-serif" font-size="12" letter-spacing="2">
+    <text x="54" y="76">01 / RECORDED DATA</text>
+    <text x="278" y="76">02 / DEMAND MODEL</text>
+    <text x="502" y="76">03 / YOUR WHAT-IF</text>
+    <text x="726" y="76">04 / COMPARISON</text>
+  </g>
+  <g fill="#a8aaa2" font-family="Arial,sans-serif" font-size="11" letter-spacing="1">
+    <text x="58" y="247">SALES + LEAD TIMES</text>
+    <text x="283" y="247">RECURSIVE RIDGE</text>
+    <text x="507" y="247">USER-SELECTED INPUTS</text>
+    <text x="731" y="247">STOCK + SHORTAGE</text>
+  </g>
+  <path d="M54 328h850" stroke="#d9d3c8" stroke-opacity=".25"/>
+  <g stroke="#ff4e2d" stroke-width="2">
+    <path d="M76 461c35-59 60-53 86-38 28 16 37-70 70-61 34 9 35 46 63 29 26-16 33-79 61-72"/>
+    <path d="M76 461c35-59 60-53 86-38 28 16 37-70 70-61 34 9 35 46 63 29 26-16 33-36 61-32" stroke="#e8e3d9" stroke-dasharray="8 8" opacity=".7"/>
+    <path d="M76 461c35-59 60-53 86-38 28 16 37-70 70-61 34 9 35 46 63 29 26-16 33-97 61-92" stroke="#b7d98d" opacity=".9"/>
+  </g>
+  <g fill="#e8e3d9" font-family="Arial,sans-serif" font-size="10" letter-spacing="2">
+    <text x="77" y="518">PROJECTED INVENTORY / ILLUSTRATIVE</text>
+    <text x="706" y="388">NORMAL</text><text x="706" y="418">DISRUPTION</text><text x="706" y="448">WITH RESPONSE</text>
+  </g>
+  <g stroke-width="3">
+    <path stroke="#ff4e2d" d="M676 384h18"/><path stroke="#e8e3d9" stroke-dasharray="4 4" d="M676 414h18"/><path stroke="#b7d98d" d="M676 444h18"/>
+  </g>
+  <g fill="#ff4e2d" font-family="Arial,sans-serif" font-size="10" letter-spacing="2">
+    <text x="54" y="567">ASSUMPTIONS IN / OUTCOMES COMPARED</text><text x="812" y="567">RESILIO / 01</text>
+  </g>
+</svg>
