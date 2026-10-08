@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 100 1600 700" preserveAspectRatio="none" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Resilio warehouse supply route plan</title>
+  <desc id="desc">A complete warehouse floor plan shows receiving, reserve storage, pick and pack, dispatch, staging, and branching supply routes.</desc>
+  <defs>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" stroke="#e8e3d9" stroke-opacity=".12"/></pattern>
+    <pattern id="rack" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M0 0v30m15-30v30m15-30v30M0 0h30m-30 15h30" stroke="#e8e3d9" stroke-opacity=".42" stroke-width="1.5"/></pattern>
+    <style>
+      .frame{stroke:#e8e3d9;stroke-opacity:.82;stroke-width:4}
+      .detail{stroke:#e8e3d9;stroke-opacity:.48;stroke-width:2.5}
+      .route{stroke:#ff7358;stroke-opacity:.42;stroke-width:7;stroke-dasharray:16 14;animation:move 3s linear infinite}
+      .branch{stroke:#ff7358;stroke-opacity:.3;stroke-width:4;stroke-dasharray:10 12;animation:move 4s linear infinite}
+      .label{fill:#e8e3d9;fill-opacity:.9;font:22px Consolas,'Courier New',monospace;letter-spacing:3px}
+      .node{fill:#171917;fill-opacity:.55;stroke:#ff7358;stroke-opacity:.5;stroke-width:5}
+      .packet{fill:#ff7358;filter:drop-shadow(0 0 8px #ff7358)}
+      .packet-response{fill:#c8e5a8;filter:drop-shadow(0 0 8px #c8e5a8)}
+      @keyframes move{to{stroke-dashoffset:-60}}
+      @media(prefers-reduced-motion:reduce){.route,.branch{animation:none}.packet{display:none}}
+    </style>
+  </defs>
+  <g opacity=".14">
+  <path fill="url(#grid)" d="M0 0h1600v900H0z"/>
+  <g class="detail"><path d="M60 140h430m-430 14h250M1120 105h410m-410 14h270M70 810h340m790-30h330M92 260v420m-12-408h24m-24 396h24m1400-390v410m-12-398h24m-24 386h24"/></g>
+  <g class="frame">
+    <path d="M300 145h1160v620H300z"/>
+    <path d="m300 145 34-30h1160l-34 30m0 620 34-30V115M300 765l34 30V145"/>
+    <path d="M500 145v620m600-620v620M500 365h600m-600 205h600m0-425v620m0-420h360m-360 220h360"/>
+  </g>
+  <g class="detail">
+    <path d="M340 190h1120m-1120 32h1120m-1120 32h1120m-1120 32h1120m-1120 32h1120m-1120 32h1120m-1120 32h1120m-1120 32h1120m-1120 32h1120m-1120 32h1120m-1120 32h1120m-1120 32h1120m-1120 32h1120m-1120 32h1120m-1120 32h1120m-1120 32h1120m-1120 32h1120m-1120 32h1120"/>
+    <rect x="545" y="195" width="225" height="140" fill="url(#rack)"/><rect x="800" y="195" width="250" height="140" fill="url(#rack)"/>
+    <rect x="545" y="405" width="225" height="125" fill="url(#rack)"/><rect x="800" y="405" width="250" height="125" fill="url(#rack)"/>
+    <rect x="545" y="610" width="225" height="115" fill="url(#rack)"/><rect x="800" y="610" width="250" height="115" fill="url(#rack)"/>
+    <path d="M1135 205h280v112h-280zm0 400h280v115h-280zM1155 225h55v72h-55zm75 0h55v72h-55zm75 0h55v72h-55zm75 0h15v72h-15zM1145 625h260v70h-260z"/>
+    <path d="M275 100v705m-12-690h24m-24 675h24m1210-690v705m-12-690h24m-24 675h24"/>
+  </g>
+  <g class="label">
+    <text x="350" y="180">RECEIVING / WH-01</text><text x="565" y="385">RESERVE STOCK</text><text x="815" y="385">PICK / PACK</text>
+    <text x="1160" y="185">DISPATCH</text><text x="1160" y="590">STAGING</text><text x="1240" y="748">SUPPLY / PLAN 01</text>
+  </g>
+  </g>
+  <path class="route" d="M175 275h375v160h520V275h210v250h205"/>
+  <path class="branch" d="M685 435v-82m115 82v-82m300-78h140v-85m-140 85v195h140m-140 80h-135v125m135-125v190h150"/>
+  <g><circle class="node" cx="175" cy="275" r="11"/><circle class="node" cx="550" cy="275" r="11"/><circle class="node" cx="550" cy="435" r="11"/><circle class="node" cx="1070" cy="435" r="11"/><circle class="node" cx="1070" cy="275" r="11"/><circle class="node" cx="1280" cy="275" r="11"/><circle class="node" cx="1280" cy="525" r="11"/><circle class="node" cx="1485" cy="525" r="11"/><circle class="node" cx="1070" cy="715" r="11"/></g>
+  <circle class="packet" r="9"><animateMotion dur="18s" repeatCount="indefinite" path="M175 275h375v160h520V275h210v250h205"/></circle>
+  <circle class="packet packet-response" r="7"><animateMotion begin="-6s" dur="18s" repeatCount="indefinite" path="M175 275h375v160h520V275h210v250h205"/></circle>
+</svg>

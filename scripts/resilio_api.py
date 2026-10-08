@@ -23,6 +23,8 @@ MAX_REQUEST_BYTES = 64 * 1024
 ALLOWED_BROWSER_ORIGINS = {
     "http://localhost:5500",
     "http://127.0.0.1:5500",
+    "http://localhost:5501",
+    "http://127.0.0.1:5501",
 }
 
 
@@ -56,6 +58,13 @@ class ResilioService:
         monthly = self.frame.assign(month=self.frame["Date"].dt.to_period("M")).groupby("month")["Units_Sold"].sum()
         warehouses = self.frame.groupby("Warehouse_ID")["Units_Sold"].sum().sort_values(ascending=False)
         skus = self.frame.groupby("SKU_ID")["Units_Sold"].sum().sort_values(ascending=False).head(8)
+        dated = self.frame.assign(month=self.frame["Date"].dt.to_period("M"))
+        warehouse_monthly = dated.pivot_table(
+            index="Warehouse_ID", columns="month", values="Units_Sold", aggfunc="sum", fill_value=0
+        ).reindex(index=warehouses.index, columns=monthly.index, fill_value=0)
+        sku_warehouse = self.frame.pivot_table(
+            index="SKU_ID", columns="Warehouse_ID", values="Units_Sold", aggfunc="sum", fill_value=0
+        ).reindex(index=skus.index, columns=warehouses.index, fill_value=0)
         promotion_sales = self.frame.groupby("Promotion_Flag")["Units_Sold"].mean() if "Promotion_Flag" in self.frame else pd.Series(dtype=float)
         promotion_comparison = None
         if 0 in promotion_sales.index and 1 in promotion_sales.index:
@@ -82,10 +91,24 @@ class ResilioService:
                 {"warehouse_id": str(name), "units": float(value)}
                 for name, value in warehouses.items()
             ],
+            "warehouse_monthly": {
+                "months": [period.strftime("%b %Y") for period in monthly.index],
+                "rows": [
+                    {"warehouse_id": str(name), "units": [float(value) for value in warehouse_monthly.loc[name].tolist()]}
+                    for name in warehouse_monthly.index
+                ],
+            },
             "top_skus": [
                 {"sku_id": str(name), "units": float(value)}
                 for name, value in skus.items()
             ],
+            "sku_warehouse": {
+                "warehouses": [str(name) for name in warehouses.index],
+                "rows": [
+                    {"sku_id": str(name), "units": [float(value) for value in sku_warehouse.loc[name].tolist()]}
+                    for name in sku_warehouse.index
+                ],
+            },
             "promotion_comparison": promotion_comparison,
             "inventory_note": "Recorded inventory and order quantities are synthetic and do not reflect the listed delivery delays.",
         }
