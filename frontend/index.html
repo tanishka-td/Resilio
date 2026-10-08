@@ -31,7 +31,7 @@
 
   <main id="main">
     <section id="overview" class="hero section-anchor">
-      <div class="hero-topline"><span>SUPPLY RESILIENCE / FIELD STUDY 01</span><span class="live-state"><i></i><span id="api-status">CONNECTING TO LOCAL MODEL</span></span></div>
+      <div class="hero-topline"><span>SUPPLY RESILIENCE / FIELD STUDY 01</span><span class="live-state"><i></i><span id="api-status">CONNECTING TO MODEL</span></span></div>
       <div class="hero-grid">
         <div class="page-architecture" aria-hidden="true"><img src="assets/supply-system-page.svg?v=13" alt=""></div>
         <div class="hero-copy">
@@ -69,7 +69,7 @@
       <div class="data-layout">
         <article class="chart-panel chart-wide reveal">
           <div class="panel-head"><div><span class="panel-index">A / DEMAND PULSE</span><h3>Recorded sales through the year</h3></div><span class="chart-unit">UNITS SOLD / MONTH</span></div>
-          <div id="monthly-chart" class="chart-slot" role="img" aria-label="Monthly recorded sales chart"><div class="chart-loading">Waiting for the local data service…</div></div>
+          <div id="monthly-chart" class="chart-slot" role="img" aria-label="Monthly recorded sales chart"><div class="chart-loading">Loading the demo data…</div></div>
           <div class="panel-foot"><span>12-month demo window</span><span class="legend-item"><i class="legend-orange"></i>Demand signal</span></div>
         </article>
         <article class="chart-panel reveal">
@@ -99,7 +99,7 @@
         </article>
         <article class="chart-panel reveal">
           <div class="panel-head pair-head"><div><span class="panel-index">G / ITEM TRACE</span><h3>Daily recorded sales</h3></div><div class="pair-controls"><label>SKU <select id="data-sku" class="sku-select" aria-label="Choose a SKU"></select></label><label>WAREHOUSE <select id="data-warehouse" class="warehouse-select" aria-label="Choose a warehouse"></select></label></div></div>
-          <div id="history-chart" class="chart-slot chart-short" role="img" aria-label="Daily recorded sales for selected item and warehouse"><div class="chart-loading">Choose a data series after connecting the local API.</div></div>
+          <div id="history-chart" class="chart-slot chart-short" role="img" aria-label="Daily recorded sales for selected item and warehouse"><div class="chart-loading">Choose a data series after the demo loads.</div></div>
           <div class="panel-foot"><span id="history-range">Showing recent recorded sales</span><span class="legend-item"><i class="legend-cream"></i>Units sold</span></div>
         </article>
         <article class="chart-panel reveal">
@@ -119,7 +119,7 @@
       <div class="forecast-strip reveal"><div class="forecast-context"><span class="panel-index">SELECTED SERIES</span><strong id="forecast-selection">Choose an item in the data section</strong><small id="forecast-meta">Forecast will load when the API is connected.</small></div><div class="forecast-callout"><span class="callout-number">14</span><span><b>DAYS AHEAD</b><small>Recursive projection</small></span></div><div class="forecast-callout"><span class="callout-number orange-number">R</span><span><b>RIDGE MODEL</b><small>Global across item/location pairs</small></span></div></div>
       <article class="chart-panel forecast-chart-panel reveal">
         <div class="panel-head"><div><span class="panel-index">I / HISTORY → FORECAST</span><h3>Past sales and projected demand</h3></div><div class="legend-row"><span class="legend-item"><i class="legend-cream"></i>Recorded sales</span><span class="legend-item"><i class="legend-orange"></i>Forecast</span></div></div>
-        <div id="forecast-chart" class="chart-slot forecast-chart" role="img" aria-label="Recorded sales and future demand forecast"><div class="chart-loading">Forecast chart appears here when the local API is ready.</div></div>
+        <div id="forecast-chart" class="chart-slot forecast-chart" role="img" aria-label="Recorded sales and future demand forecast"><div class="chart-loading">Forecast chart appears here when the demo loads.</div></div>
         <div class="panel-foot"><span>Forecast target: recorded sales as a demand proxy</span><span id="forecast-through">—</span></div>
       </article>
       <div class="evaluation-row reveal"><div class="evaluation-title"><span class="panel-index">MODEL CHECK / DEMO EVALUATION</span><h3>Compared with a simple<br>seven-day average.</h3><p>Lower MAE means smaller average error in the demo evaluation.</p></div><div class="evaluation-metric"><span>TOMORROW / MAE</span><strong>4.13 <small>Ridge</small></strong><div class="metric-compare">vs <b>4.50</b> baseline</div><div class="metric-line"><i style="width:83%"></i></div></div><div class="evaluation-metric"><span>14-DAY TOTAL / MAE</span><strong>16.27 <small>Ridge</small></strong><div class="metric-compare">vs <b>32.73</b> baseline</div><div class="metric-line"><i style="width:50%"></i></div></div><div class="evaluation-note"><span class="asterisk">*</span><p>Illustrative demo results only. They are not a promise of accuracy in live operations.</p></div></div>
@@ -149,7 +149,7 @@
           <p class="field-hint">After you enter stock and order size, the comparison refreshes as you adjust these assumptions.</p>
           <p class="field-hint">Results compare stock and unmet demand; cost assumptions are not included.</p>
           <button class="submit-scenario" type="submit"><span>RECALCULATE NOW</span><b>↗</b></button>
-          <p id="sim-message" class="form-message" role="status">Connect the local model to run a scenario.</p>
+          <p id="sim-message" class="form-message" role="status">Loading the demo model…</p>
         </form>
         <div class="sim-results reveal">
           <div class="result-heading"><div><span class="panel-index">SCENARIO OUTPUT / 02</span><h3>Three paths.<br><span>One clear comparison.</span></h3></div><span class="result-state" id="scenario-state">AWAITING INPUT</span></div>

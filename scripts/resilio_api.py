@@ -5,10 +5,12 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import mimetypes
+import os
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any, cast
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs, unquote, urlparse
 
 import pandas as pd
 
@@ -20,6 +22,8 @@ from simulate_resilience import (
 
 
 MAX_REQUEST_BYTES = 64 * 1024
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+FRONTEND_ROOT = PROJECT_ROOT / "frontend"
 ALLOWED_BROWSER_ORIGINS = {
     "http://localhost:5500",
     "http://127.0.0.1:5500",
@@ -202,7 +206,7 @@ class ResilioService:
 
 
 class ResilioRequestHandler(BaseHTTPRequestHandler):
-    server_version = "ResilioLocal/1.0"
+    server_version = "Resilio/1.0"
 
     @property
     def service(self) -> ResilioService:
@@ -259,10 +263,33 @@ class ResilioRequestHandler(BaseHTTPRequestHandler):
                     raise ValueError("sku_id and warehouse_id are required.")
                 horizon = int(params.get("horizon", ["14"])[0])
                 self._send_json(200, self.service.forecast(sku, warehouse, horizon))
-            else:
+            elif path.startswith("/api/"):
                 self._send_json(404, {"error": "Endpoint not found."})
+            else:
+                self._send_file(path)
         except (TypeError, ValueError) as error:
             self._send_json(400, {"error": str(error)})
+
+    def _send_file(self, request_path: str) -> None:
+        relative_path = unquote(request_path).lstrip("/") or "index.html"
+        file_path = (FRONTEND_ROOT / relative_path).resolve()
+        try:
+            file_path.relative_to(FRONTEND_ROOT.resolve())
+        except ValueError:
+            self._send_json(404, {"error": "Page not found."})
+            return
+        if file_path.is_dir():
+            file_path /= "index.html"
+        if not file_path.is_file():
+            self._send_json(404, {"error": "Page not found."})
+            return
+        payload = file_path.read_bytes()
+        self.send_response(200)
+        self.send_header("Content-Type", mimetypes.guess_type(file_path.name)[0] or "application/octet-stream")
+        self.send_header("Content-Length", str(len(payload)))
+        self.send_header("Cache-Control", "public, max-age=300")
+        self.end_headers()
+        self.wfile.write(payload)
 
     def do_POST(self) -> None:
         if urlparse(self.path).path != "/api/simulate":
@@ -292,14 +319,19 @@ class ResilioHTTPServer(ThreadingHTTPServer):
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Run Resilio's local forecast and scenario API.")
-    parser.add_argument("--csv", type=Path, default=Path("Data/raw/supply_chain_dataset1.csv"))
-    parser.add_argument("--port", type=int, default=8000)
+    parser = argparse.ArgumentParser(description="Run Resilio's demo website and forecast API.")
+    parser.add_argument(
+        "--csv",
+        type=Path,
+        default=Path(os.environ.get("RESILIO_DATASET_PATH", PROJECT_ROOT / "Data/demo/resilio_demo.csv")),
+    )
+    parser.add_argument("--host", default=os.environ.get("HOST", "0.0.0.0" if "PORT" in os.environ else "127.0.0.1"))
+    parser.add_argument("--port", type=int, default=int(os.environ.get("PORT", "8000")))
     args = parser.parse_args()
 
     service = ResilioService(args.csv)
-    server = ResilioHTTPServer(("127.0.0.1", args.port), service)
-    print(f"Resilio API ready at http://127.0.0.1:{args.port}")
+    server = ResilioHTTPServer((args.host, args.port), service)
+    print(f"Resilio service ready on {args.host}:{args.port}")
     print(f"Dataset and model use sales through {service.last_date:%Y-%m-%d}.")
     print("Press Ctrl+C to stop.")
     try:

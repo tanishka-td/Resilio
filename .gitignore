@@ -11,6 +11,8 @@ __pycache__/
 # Raw dataset files
 Data/raw/*
 !Data/raw/README.md
+Data/demo/*
+!Data/demo/resilio_demo.csv
 
 # Generated simulation results
 outputs/resilience_scenarios.json

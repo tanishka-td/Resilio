@@ -43,13 +43,13 @@ The simulator does not calculate financial costs: holding costs and shortage pen
 
    Replace the placeholders with the SKU, warehouse, starting stock, and planned order size you want to explore. Optional disruption and response settings are listed by `--help`. The script writes a forecast, daily inventory traces, and summaries for the normal, disruption, and response cases to `outputs/resilience_scenarios.json`.
 
-6. Start the local API:
+6. Start the local web service:
 
    ```powershell
    python scripts/resilio_api.py
    ```
 
-   It listens on `http://127.0.0.1:8000` by default and provides `GET /api/health`, `/api/items`, `/api/overview`, `/api/history`, `/api/forecast`, and `POST /api/simulate`. The simulation request requires `sku_id`, `warehouse_id`, `opening_stock`, and `order_units`; optional fields are `demand_multiplier`, `delay_days`, `shipment_loss_fraction`, `extra_stock_units`, and `expedite_days`. It only listens on the local computer by default.
+   It serves the website at `http://127.0.0.1:8000` and provides `GET /api/health`, `/api/items`, `/api/overview`, `/api/history`, `/api/forecast`, and `POST /api/simulate`. The simulation request requires `sku_id`, `warehouse_id`, `opening_stock`, and `order_units`; optional fields are `demand_multiplier`, `delay_days`, `shipment_loss_fraction`, `extra_stock_units`, and `expedite_days`. The website API uses the smaller `Data/demo/resilio_demo.csv` file. The downloaded source CSV remains under `Data/raw/` and is ignored by Git.
 
 7. In a second terminal, serve the website from the project root:
 
@@ -57,9 +57,15 @@ The simulator does not calculate financial costs: holding costs and shortage pen
    python -m http.server 5500 --bind 127.0.0.1
    ```
 
-   Open `http://127.0.0.1:5500/frontend/`. Keep both local servers running. The page includes visual dataset summaries, historical charts, the demand forecast, and a scenario comparison. Enter starting stock and planned order size yourself before running a scenario.
+   Open `http://127.0.0.1:5500/frontend/`. Keep both services running. The page includes visual dataset summaries, historical charts, the demand forecast, and a scenario comparison. Enter starting stock and planned order size yourself before running a scenario.
 
-Do not commit downloaded raw data. The `.gitignore` excludes files in `Data/raw/` and all `*.csv` files.
+## Deploy on Render
+
+Create a Python 3 Web Service from the GitHub repository, using the repository root as the Root Directory. Set the Build Command to `pip install -r requirements.txt` and the Start Command to `python scripts/resilio_api.py`. Leave Environment Variables blank: Render supplies `PORT`, and the service uses the bundled demo dataset by default. No Dockerfile is needed. After deployment, open the service URL to use the website and API from the same address.
+
+`Data/demo/resilio_demo.csv` is a reduced-column demo copy used by the web app. It contains dates, item and warehouse identifiers, supplier identifiers, sales, lead times, and promotion flags. It excludes the source file's unreliable inventory, order, and cost fields. `Data/raw/` remains ignored by Git. Dataset upload or manual entry is a later feature and is not part of this deployment setup.
+
+Do not commit the downloaded source file. Git ignores files in `Data/raw/`; the prepared web demo fixture is stored separately in `Data/demo/`.
 
 ## Planned direction
 

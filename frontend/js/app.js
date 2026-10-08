@@ -235,7 +235,7 @@ async function refreshSelectedSeries() {
     text('#forecast-through', `MODEL TRAINED THROUGH ${forecast.trained_through}`);
   } catch (error) {
     text('#history-range', error.message);
-    text('#forecast-meta', 'Forecast unavailable until the local API is ready.');
+    text('#forecast-meta', 'Forecast is unavailable while the data service is offline.');
   }
 }
 
@@ -450,9 +450,9 @@ async function init() {
     text('#sim-message', 'Enter your stock and order assumptions to compare scenarios.');
     await refreshSelectedSeries();
   } catch (error) {
-    setApiState(false, 'LOCAL MODEL OFFLINE');
-    text('#sim-message', 'Start the local Python API to load demo charts and forecasts.');
-    text('#forecast-selection', 'Local API not connected');
+    setApiState(false, 'MODEL OFFLINE');
+    text('#sim-message', 'The data service could not load the demo. Please try again later.');
+    text('#forecast-selection', 'Data service not connected');
     console.info('Resilio data service is not available:', error.message);
   }
 }

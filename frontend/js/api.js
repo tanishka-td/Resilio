@@ -1,4 +1,7 @@
-const API_ROOT = 'http://127.0.0.1:8000/api';
+const LOCAL_DEV_PORTS = ['5500', '5501'];
+const API_ROOT = LOCAL_DEV_PORTS.includes(window.location.port)
+  ? 'http://127.0.0.1:8000/api'
+  : '/api';
 
 async function apiRequest(path, options = {}) {
   const headers = { ...options.headers };
